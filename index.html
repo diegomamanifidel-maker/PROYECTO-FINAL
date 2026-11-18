@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SIMTELE-WEB: simulador educativo de prevención y monitoreo de Mi Teleférico.">
+  <title>SIMTELE-WEB | Centro de monitoreo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div id="loginView" class="login-shell">
+    <div class="login-visual">
+      <div class="brand brand-light">
+        <div class="brand-mark">ST</div>
+        <div><strong>SIMTELE<span>·</span>WEB</strong><small>Centro de monitoreo educativo</small></div>
+      </div>
+      <div class="login-message">
+        <span class="eyebrow">MOVILIDAD · PREVENCIÓN · CONTROL</span>
+        <h1>Conectamos La Paz.<br><em>Monitoreamos el futuro.</em></h1>
+        <p>Plataforma académica de simulación para el monitoreo preventivo de un sistema de transporte por cable.</p>
+      </div>
+      <div class="login-visual-footer"><span class="live-dot"></span> ENTORNO DE SIMULACIÓN ACTIVO <span>·</span> LA PAZ, BOLIVIA</div>
+    </div>
+    <div class="login-panel">
+      <div class="login-card">
+        <div class="mobile-brand brand">
+          <div class="brand-mark">ST</div><div><strong>SIMTELE<span>·</span>WEB</strong><small>Centro de monitoreo</small></div>
+        </div>
+        <span class="eyebrow">ACCESO AL SISTEMA</span>
+        <h2>Bienvenido</h2>
+        <p class="muted">Ingresa tus credenciales para continuar.</p>
+        <form id="loginForm" class="form-stack">
+          <label for="loginUser">Usuario o correo</label>
+          <input id="loginUser" autocomplete="username" placeholder="Ej. admin" required>
+          <label for="loginPassword">Contraseña</label>
+          <input id="loginPassword" type="password" autocomplete="current-password" placeholder="Tu contraseña" required>
+          <p id="loginError" class="form-error" role="alert"></p>
+          <button class="btn btn-primary btn-wide" type="submit">Iniciar sesión <span>→</span></button>
+        </form>
+        <div class="login-divider"><span>¿Aún no tienes cuenta?</span></div>
+        <button class="btn btn-outline btn-wide" id="showRegister" type="button">Crear una cuenta</button>
+        <div class="demo-credentials">
+          <strong>CUENTAS DE DEMOSTRACIÓN</strong>
+          <p><b>Administrador:</b> admin / admin123</p>
+          <p><b>Operador:</b> operador / opera123</p>
+          <p><b>Técnico:</b> tecnico / tecni123</p>
+        </div>
+        <small class="security-note">Proyecto académico. Los datos se guardan localmente en este navegador.</small>
+      </div>
+    </div>
+  </div>
+
+  <div id="registerView" class="login-shell hidden">
+    <div class="login-visual">
+      <div class="brand brand-light"><div class="brand-mark">ST</div><div><strong>SIMTELE<span>·</span>WEB</strong><small>Centro de monitoreo educativo</small></div></div>
+      <div class="login-message"><span class="eyebrow">NUEVO ACCESO</span><h1>Forma parte del<br><em>equipo de monitoreo.</em></h1><p>Crea tu cuenta para acceder a las herramientas de simulación.</p></div>
+      <div class="login-visual-footer"><span class="live-dot"></span> REGISTRO DE USUARIOS <span>·</span> LA PAZ, BOLIVIA</div>
+    </div>
+    <div class="login-panel">
+      <div class="login-card">
+        <span class="eyebrow">REGISTRO</span><h2>Crear cuenta</h2><p class="muted">Las cuentas nuevas se crean con el rol Operador.</p>
+        <form id="registerForm" class="form-stack">
+          <label for="regName">Nombre completo</label><input id="regName" required minlength="3" placeholder="Tu nombre">
+          <label for="regUser">Nombre de usuario</label><input id="regUser" required minlength="3" placeholder="Ej. jperez">
+          <label for="regEmail">Correo electrónico</label><input id="regEmail" type="email" required placeholder="correo@ejemplo.com">
+          <label for="regPassword">Contraseña</label><input id="regPassword" type="password" required minlength="6" placeholder="Mínimo 6 caracteres">
+          <p id="registerError" class="form-error" role="alert"></p>
+          <button class="btn btn-primary btn-wide" type="submit">Crear cuenta <span>→</span></button>
+        </form>
+        <button class="text-button" id="backToLogin" type="button">← Volver al inicio de sesión</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="appView" class="app-shell hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand brand-sidebar"><div class="brand-mark">ST</div><div><strong>SIMTELE<span>·</span>WEB</strong><small>CONTROL CENTER</small></div></div>
+      <div class="sidebar-label">MENÚ PRINCIPAL</div>
+      <nav class="side-nav" aria-label="Navegación principal">
+        <button class="nav-link active" data-section="dashboard"><span class="nav-icon">▦</span> Resumen general</button>
+        <button class="nav-link" data-section="emergency"><span class="nav-icon">◉</span> Detención de emergencia</button>
+        <button class="nav-link" data-section="maintenance"><span class="nav-icon">⚙</span> Mantenimiento</button>
+        <button class="nav-link" data-section="wind"><span class="nav-icon">≋</span> Viento y oscilación</button>
+        <button class="nav-link" data-section="sensors"><span class="nav-icon">⌁</span> Sensores</button>
+        <button class="nav-link admin-only" data-section="users"><span class="nav-icon">♙</span> Usuarios</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="simulation-card"><span class="live-dot"></span><div><b>Modo simulación</b><small>Datos didácticos</small></div></div>
+        <button id="logoutBtn" class="logout-btn"><span>↪</span> Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="topbar-left"><button id="menuToggle" class="menu-toggle" aria-label="Abrir menú">☰</button><div><span class="eyebrow">SISTEMA DE MONITOREO</span><div class="breadcrumb">Mi Teleférico <span>/</span> <b id="pageName">Resumen general</b></div></div></div>
+        <div class="topbar-right"><div class="system-status"><span class="live-dot"></span> Sistema en línea</div><div class="user-chip"><div class="avatar" id="userAvatar">AD</div><div><b id="currentUserName">Administrador</b><small id="currentUserRole">ADMINISTRADOR</small></div></div></div>
+      </header>
+
+      <div class="content-wrap">
+        <section id="dashboardSection" class="page-section">
+          <div class="page-heading"><div><span class="eyebrow">PANEL PRINCIPAL</span><h1>Resumen general</h1><p>Indicadores de actividad del entorno de simulación.</p></div><div class="date-pill" id="todayDate">—</div></div>
+          <div class="welcome-banner"><div><span class="eyebrow">CENTRO DE OPERACIONES · LA PAZ</span><h2>Panel de prevención y monitoreo</h2><p>Gestiona registros de prueba y consulta los indicadores de cada módulo.</p></div><div class="banner-art"><div class="cable"></div><div class="gondola">🚡</div><div class="mountain">⌁</div></div></div>
+          <div class="stats-grid">
+            <article class="stat-card"><div class="stat-top"><span>REGISTROS DE MANTENIMIENTO</span><span class="stat-icon blue">⚙</span></div><strong id="statMaintenance">0</strong><small>Componentes registrados</small></article>
+            <article class="stat-card"><div class="stat-top"><span>MEDICIONES DE VIENTO</span><span class="stat-icon cyan">≋</span></div><strong id="statWind">0</strong><small>Lecturas ingresadas</small></article>
+            <article class="stat-card"><div class="stat-top"><span>SENSORES ACTIVOS</span><span class="stat-icon violet">⌁</span></div><strong id="statSensors">0</strong><small>Registros válidos</small></article>
+            <article class="stat-card"><div class="stat-top"><span>EVENTOS SIMULADOS</span><span class="stat-icon orange">◉</span></div><strong id="statEmergency">0</strong><small>Cálculos de reacción</small></article>
+          </div>
+          <div class="dashboard-grid">
+            <article class="panel"><div class="panel-heading"><div><span class="eyebrow">ACTIVIDAD</span><h3>Últimos registros</h3></div><span class="subtle-tag">En este navegador</span></div><div id="recentActivity" class="activity-list"><div class="empty-state">Todavía no hay actividad. Ingresa datos en cualquiera de los módulos.</div></div></article>
+            <article class="panel quick-panel"><div class="panel-heading"><div><span class="eyebrow">ACCESO RÁPIDO</span><h3>Herramientas</h3></div></div>
+              <button class="quick-link" data-go="emergency"><span class="quick-icon">◉</span><span><b>Calcular reacción</b><small>Estimar distancia de detención</small></span><span>→</span></button>
+              <button class="quick-link" data-go="maintenance"><span class="quick-icon">⚙</span><span><b>Nuevo mantenimiento</b><small>Registrar un componente</small></span><span>→</span></button>
+              <button class="quick-link" data-go="wind"><span class="quick-icon">≋</span><span><b>Medir viento</b><small>Analizar cinco mediciones</small></span><span>→</span></button>
+              <button class="quick-link" data-go="sensors"><span class="quick-icon">⌁</span><span><b>Validar sensor</b><small>Registrar lectura de sensor</small></span><span>→</span></button>
+            </article>
+          </div>
+          <p class="disclaimer">⚠ SIMULACIÓN ACADÉMICA: los umbrales, cálculos y datos de esta plataforma son didácticos. No representan parámetros, protocolos ni límites operativos reales de Mi Teleférico.</p>
+        </section>
+
+        <section id="emergencySection" class="page-section hidden">
+          <div class="page-heading"><div><span class="eyebrow">MÓDULO 01 · PREVENCIÓN</span><h1>Detención de emergencia</h1><p>Estimación didáctica de la distancia recorrida durante el tiempo de reacción.</p></div><span class="module-number">01 / 04</span></div>
+          <div class="module-layout">
+            <article class="panel form-panel"><div class="panel-heading"><div><span class="eyebrow">CALCULADORA</span><h3>Parámetros de simulación</h3></div><span class="panel-icon">◉</span></div>
+              <form id="emergencyForm" class="form-grid">
+                <div class="field full"><label for="speed">Velocidad (km/h)</label><input id="speed" type="number" min="0" max="200" step="0.1" placeholder="Ej. 72" required><small>Ingresa un valor entre 0 y 200 km/h.</small></div>
+                <div class="field full"><label for="reactionTime">Tiempo de reacción (segundos)</label><input id="reactionTime" type="number" min="0" max="30" step="0.1" placeholder="Ej. 3" required><small>Ingresa un valor entre 0 y 30 segundos.</small></div>
+                <button class="btn btn-primary full" type="submit">Calcular distancia <span>→</span></button>
+              </form>
+              <div class="formula-box"><b>FÓRMULA UTILIZADA</b><code>d = (v / 3.6) × t</code><small>v = velocidad · t = tiempo de reacción · d = distancia en metros</small></div>
+            </article>
+            <article class="panel result-panel"><span class="eyebrow">RESULTADO DE LA ESTIMACIÓN</span><div class="result-circle"><div><strong id="distanceResult">—</strong><small>METROS</small></div></div><h3 id="emergencyStatus">Esperando datos</h3><p id="emergencyMessage">Completa los parámetros para obtener una estimación.</p><div class="threshold-note"><b>Umbral didáctico:</b> 50 metros. Es un valor ficticio utilizado únicamente para esta actividad.</div></article>
+          </div>
+          <article class="panel table-panel"><div class="panel-heading"><div><span class="eyebrow">HISTORIAL</span><h3>Cálculos realizados</h3></div><span class="subtle-tag" id="emergencyCount">0 registros</span></div><div class="table-scroll"><table><thead><tr><th>Fecha y hora</th><th>Velocidad</th><th>Reacción</th><th>Distancia</th><th>Clasificación</th></tr></thead><tbody id="emergencyTable"><tr><td colspan="5" class="table-empty">No hay cálculos registrados.</td></tr></tbody></table></div></article>
+        </section>
+
+        <section id="maintenanceSection" class="page-section hidden">
+          <div class="page-heading"><div><span class="eyebrow">MÓDULO 02 · CONSERVACIÓN</span><h1>Gestión de mantenimiento</h1><p>Control de componentes y seguimiento de su estado mediante registros simulados.</p></div><span class="module-number">02 / 04</span></div>
+          <div class="module-layout maintenance-layout">
+            <article class="panel form-panel"><div class="panel-heading"><div><span class="eyebrow">NUEVO REGISTRO</span><h3>Registrar componente</h3></div><span class="panel-icon">⚙</span></div>
+              <form id="maintenanceForm" class="form-grid">
+                <div class="field full"><label for="component">Nombre del componente</label><input id="component" maxlength="60" placeholder="Ej. Polea de estación" required></div>
+                <div class="field full"><label for="hours">Horas de uso</label><input id="hours" type="number" min="0" max="100000" step="1" placeholder="Ej. 1200" required></div>
+                <div class="field full"><label for="maintenanceStatus">Estado del componente</label><select id="maintenanceStatus" required><option value="">Seleccionar estado</option><option value="Normal">Normal</option><option value="Revisión">Revisión</option><option value="Urgente">Urgente</option></select></div>
+                <button class="btn btn-primary full" type="submit">Guardar componente <span>＋</span></button>
+              </form>
+            </article>
+            <article class="panel info-panel"><span class="eyebrow">ESTADOS DE REFERENCIA</span><h3>Clasificación de mantenimiento</h3><div class="legend-row"><span class="status-dot normal"></span><div><b>Normal</b><small>Sin observaciones en esta simulación.</small></div></div><div class="legend-row"><span class="status-dot review"></span><div><b>Revisión</b><small>Requiere inspección preventiva simulada.</small></div></div><div class="legend-row"><span class="status-dot urgent"></span><div><b>Urgente</b><small>Prioridad alta dentro del ejercicio.</small></div></div><div class="info-callout">Los estados son etiquetas didácticas y no sustituyen criterios técnicos de mantenimiento.</div></article>
+          </div>
+          <article class="panel table-panel"><div class="panel-heading"><div><span class="eyebrow">INVENTARIO</span><h3>Componentes registrados</h3></div><span class="subtle-tag" id="maintenanceCount">0 registros</span></div><div class="table-scroll"><table><thead><tr><th>Componente</th><th>Horas de uso</th><th>Estado</th><th>Fecha</th><th>Acción</th></tr></thead><tbody id="maintenanceTable"><tr><td colspan="5" class="table-empty">No hay componentes registrados.</td></tr></tbody></table></div></article>
+        </section>
+
+        <section id="windSection" class="page-section hidden">
+          <div class="page-heading"><div><span class="eyebrow">MÓDULO 03 · CONDICIONES AMBIENTALES</span><h1>Viento y oscilación</h1><p>Analiza cinco mediciones simuladas de intensidad de viento.</p></div><span class="module-number">03 / 04</span></div>
+          <article class="panel wind-entry-panel"><div class="panel-heading"><div><span class="eyebrow">CAPTURA DE DATOS</span><h3>Registrar cinco mediciones</h3></div><span class="panel-icon">≋</span></div><form id="windForm"><div class="wind-inputs">
+            <div class="field"><label for="wind1">Medición 1 (km/h)</label><input id="wind1" type="number" min="0" max="200" step="0.1" required placeholder="0"></div>
+            <div class="field"><label for="wind2">Medición 2 (km/h)</label><input id="wind2" type="number" min="0" max="200" step="0.1" required placeholder="0"></div>
+            <div class="field"><label for="wind3">Medición 3 (km/h)</label><input id="wind3" type="number" min="0" max="200" step="0.1" required placeholder="0"></div>
+            <div class="field"><label for="wind4">Medición 4 (km/h)</label><input id="wind4" type="number" min="0" max="200" step="0.1" required placeholder="0"></div>
+            <div class="field"><label for="wind5">Medición 5 (km/h)</label><input id="wind5" type="number" min="0" max="200" step="0.1" required placeholder="0"></div>
+          </div><button class="btn btn-primary" type="submit">Analizar mediciones <span>→</span></button></form></article>
+          <div class="wind-results">
+            <article class="metric-card"><span>PROMEDIO</span><strong id="windAverage">—</strong><small>km/h</small></article>
+            <article class="metric-card"><span>MÁXIMO</span><strong id="windMaximum">—</strong><small>km/h</small></article>
+            <article class="metric-card classification-card"><span>CLASIFICACIÓN DIDÁCTICA</span><strong id="windClassification">Pendiente</strong><small id="windDescription">Registra las cinco mediciones.</small></article>
+          </div>
+          <article class="panel table-panel"><div class="panel-heading"><div><span class="eyebrow">HISTORIAL</span><h3>Análisis de viento</h3></div><span class="subtle-tag" id="windCount">0 análisis</span></div><div class="table-scroll"><table><thead><tr><th>Fecha y hora</th><th>Mediciones (km/h)</th><th>Promedio</th><th>Máximo</th><th>Clasificación</th></tr></thead><tbody id="windTable"><tr><td colspan="5" class="table-empty">No hay análisis registrados.</td></tr></tbody></table></div></article>
+          <p class="disclaimer">⚠ Los rangos de clasificación del viento son ficticios y exclusivamente didácticos; no deben interpretarse como límites operativos reales.</p>
+        </section>
+
+        <section id="sensorsSection" class="page-section hidden">
+          <div class="page-heading"><div><span class="eyebrow">MÓDULO 04 · INSTRUMENTACIÓN</span><h1>Monitoreo de sensores</h1><p>Registro y validación de códigos y lecturas de sensores simulados.</p></div><span class="module-number">04 / 04</span></div>
+          <div class="module-layout">
+            <article class="panel form-panel"><div class="panel-heading"><div><span class="eyebrow">NUEVA LECTURA</span><h3>Registrar sensor</h3></div><span class="panel-icon">⌁</span></div>
+              <form id="sensorForm" class="form-grid">
+                <div class="field full"><label for="sensorCode">Código del sensor</label><input id="sensorCode" placeholder="SEN-001" maxlength="7" required><small>Formato obligatorio: SEN- seguido de tres dígitos.</small></div>
+                <div class="field full"><label for="sensorType">Tipo de sensor</label><select id="sensorType" required><option value="">Seleccionar tipo</option><option>Temperatura</option><option>Vibración</option><option>Velocidad</option><option>Posición</option><option>Humedad</option></select></div>
+                <div class="field full"><label for="sensorReading">Lectura registrada</label><input id="sensorReading" type="number" step="0.01" placeholder="Ej. 24.5" required><small>Se acepta cualquier valor numérico finito.</small></div>
+                <p id="sensorFeedback" class="form-feedback full" aria-live="polite"></p>
+                <button class="btn btn-primary full" type="submit">Validar y guardar <span>→</span></button>
+              </form>
+            </article>
+            <article class="panel sensor-guide"><span class="eyebrow">VALIDACIÓN DE CÓDIGO</span><h3>Expresión regular aplicada</h3><div class="regex-code">/^SEN-\d{3}$/</div><div class="validation-example valid-example"><span>✓</span><div><b>SEN-001</b><small>Formato válido</small></div></div><div class="validation-example invalid-example"><span>×</span><div><b>SEN-1</b><small>Formato inválido</small></div></div><div class="info-callout">La expresión regular comprueba que el código comience con SEN- y termine con exactamente tres dígitos.</div></article>
+          </div>
+          <article class="panel table-panel"><div class="panel-heading"><div><span class="eyebrow">LECTURAS VÁLIDAS</span><h3>Sensores registrados</h3></div><span class="subtle-tag" id="sensorCount">0 sensores</span></div><div class="table-scroll"><table><thead><tr><th>Código</th><th>Tipo</th><th>Lectura</th><th>Fecha y hora</th><th>Acción</th></tr></thead><tbody id="sensorTable"><tr><td colspan="5" class="table-empty">No hay sensores registrados.</td></tr></tbody></table></div></article>
+        </section>
+
+        <section id="usersSection" class="page-section hidden">
+          <div class="page-heading"><div><span class="eyebrow">ADMINISTRACIÓN</span><h1>Gestión de usuarios</h1><p>Consulta las cuentas registradas en este navegador.</p></div><span class="module-number">ADMIN</span></div>
+          <article class="panel"><div class="panel-heading"><div><span class="eyebrow">CUENTAS DEL SISTEMA</span><h3>Usuarios registrados</h3></div><span class="subtle-tag" id="usersCount">0 usuarios</span></div><div class="table-scroll"><table><thead><tr><th>Nombre</th><th>Usuario</th><th>Correo</th><th>Rol</th></tr></thead><tbody id="usersTable"></tbody></table></div></article>
+          <div class="role-cards"><article class="role-card"><span class="role-symbol">♙</span><h3>Administrador</h3><p>Acceso a todos los módulos y a la consulta de usuarios.</p></article><article class="role-card"><span class="role-symbol">◉</span><h3>Operador</h3><p>Acceso a detención, viento y sensores.</p></article><article class="role-card"><span class="role-symbol">⚙</span><h3>Técnico</h3><p>Acceso a mantenimiento y sensores.</p></article></div>
+        </section>
+      </div>
+      <footer class="app-footer"><span>SIMTELE-WEB · Proyecto académico de Programación Web I</span><span>La Paz, Bolivia · <b>Entorno simulado</b></span></footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
